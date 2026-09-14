@@ -4,48 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marco Crotti — web developer</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta
+      name="description"
+      content="Marco Crotti, web developer in De Agostini Publishing. Pagine statiche che si caricano subito."
+    />
+    <meta name="theme-color" content="#fbf8f2" />
     <style>
+      :root {
+        --gold: #8a6a1c;
+        --olive-800: #3c4226;
+        --olive-600: #5b6238;
+        --olive-500: #6e7547;
+      }
       body {
-        font:
-          17px/1.6 ui-serif,
-          Georgia,
-          serif;
+        font: 17px/1.6 ui-serif, Georgia, serif;
+        background: #fbf8f2;
+        color: var(--olive-800);
+        margin: 0;
+      }
+      main {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 6rem 1.5rem;
+      }
+      .handle {
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        margin: 0;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 3.75rem);
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        margin: 0.25rem 0 1.5rem;
+      }
+      p {
+        max-width: 32rem;
+        color: var(--olive-600);
+      }
+      a {
+        color: inherit;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: var(--gold);
+        text-decoration-thickness: 2px;
+      }
+      #debug {
+        color: var(--olive-500);
       }
     </style>
   </head>
-  <body class="bg-[#fbf8f2]">
-    <div class="max-w-7xl mx-auto px-6 py-24">
-      <div class="space-y-6">
-        <div>
-          <p class="text-[#a8842c] tracking-widest">@marcocrottidea</p>
-          <h1 class="text-6xl font-bold text-olive-800 tracking-tight">
-            Marco Crotti
-          </h1>
-        </div>
-        <p class="max-w-lg text-olive-600">
-          Web developer in De Agostini Publishing. Faccio pagine che si caricano
-          prima che tu finisca di leggere il titolo.
-        </p>
-        <p>
-          Scrivimi:
-          <a
-            href="mailto:marco.crotti@deagostini.com"
-            class="underline decoration-[#a8842c] decoration-2 font-semibold"
-            >marco.crotti@deagostini.com</a
-          >
-        </p>
-        <div id="debug" class="text-olive-500"></div>
-      </div>
-    </div>
+  <body>
+    <main>
+      <p class="handle">@marcocrottidea</p>
+      <h1>Marco Crotti</h1>
+      <p>
+        Web developer in De Agostini Publishing. Faccio pagine che si caricano
+        prima che tu finisca di leggere il titolo.
+      </p>
+      <p>
+        Scrivimi:
+        <a href="mailto:marco.crotti@deagostini.com"
+          >marco.crotti@deagostini.com</a
+        >
+      </p>
+      <div id="debug"></div>
+    </main>
     <script>
       if (new URLSearchParams(location.search).has("dev")) {
-        document.getElementById("debug").insertAdjacentHTML(
-          "afterbegin",
-          `<pre style="color:var(--gold);font-size:.75rem">ua: ${navigator.userAgent}
+        const pre = document.createElement("pre");
+        pre.style.cssText = "color:var(--gold);font-size:.75rem";
+        pre.textContent = `ua: ${navigator.userAgent}
 viewport: ${innerWidth}x${innerHeight} · dpr: ${devicePixelRatio}
-build: statico, come Dio comanda</pre>`,
-        );
+build: statico, come Dio comanda`;
+        document.getElementById("debug").prepend(pre);
       }
     </script>
   </body>
